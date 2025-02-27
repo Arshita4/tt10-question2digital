@@ -25,15 +25,13 @@ async def test_project(dut):
 
     dut._log.info("Testing priority encoder behavior")
 
-    # Iterate through all possible input combinations
-    for i in range(16):  # Only testing `ui_in` since `uio_in` is unused
+   
+    for i in range(16):  
         if 15-i<8:
             dut.ui_in.value=1<<(15-i)
         else:
             dut.ui_in.value=0
-        # Wait for stable output
         await ClockCycles(dut.clk, 1)
-
-        # Expected output: Binary representation of the highest active bit
+      
         expected_output = 14 - i if i < 15 else 0b11110000  # Default case
     
