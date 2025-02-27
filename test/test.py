@@ -34,5 +34,5 @@ async def test_project(dut):
         await ClockCycles(dut.clk, 1)
 
         # Expected output: Binary representation of the highest active bit
-        expected_output = 14 - i if i < 15 else 8'b11110000  # Default case
+        expected_output = 14 - i if i < 15 else 0b11110000  # Default case
     
