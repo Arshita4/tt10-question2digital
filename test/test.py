@@ -27,9 +27,10 @@ async def test_project(dut):
 
     # Iterate through all possible input combinations
     for i in range(16):  # Only testing `ui_in` since `uio_in` is unused
-        dut.ui_in.value = 1 << (15 - i)  # Set a single bit high
-        dut.uio_in.value = 0  # Ensure IOs do not interfere
-
+        if 15-i<8:
+            dut.ui_in.value=1<<(15-i)
+        else:
+            dut.ui_in.value=0
         # Wait for stable output
         await ClockCycles(dut.clk, 1)
 
